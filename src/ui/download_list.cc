@@ -5,12 +5,12 @@
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License, or
 // (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -138,6 +138,11 @@ DownloadList::unfocus_download(core::Download* d) {
   current_view()->next_focus();
 }
 
+display::WindowDownloadList*
+DownloadList::current_window_list() {
+  return dynamic_cast<ElementDownloadList*>(m_uiArray[DISPLAY_DOWNLOAD_LIST])->window();
+}
+
 void
 DownloadList::activate_display(Display displayType) {
   if (!is_active())
@@ -158,7 +163,7 @@ DownloadList::activate_display(Display displayType) {
     m_uiArray[m_state] = NULL;
 
     break;
-    
+
   case DISPLAY_DOWNLOAD_LIST:
     m_uiArray[DISPLAY_DOWNLOAD_LIST]->disable();
 
@@ -172,7 +177,7 @@ DownloadList::activate_display(Display displayType) {
   case DISPLAY_STRING_LIST:
     m_uiArray[m_state]->disable();
     break;
-    
+
   default:
     break;
   }
@@ -194,7 +199,7 @@ DownloadList::activate_display(Display displayType) {
 
       download->activate(m_frame);
       download->slot_exit(sigc::bind(sigc::mem_fun(*this, &DownloadList::activate_display), DISPLAY_DOWNLOAD_LIST));
-    
+
       m_uiArray[DISPLAY_DOWNLOAD] = download;
       break;
     }
@@ -286,7 +291,7 @@ DownloadList::receive_view_input(Input type) {
 void
 DownloadList::receive_exit_input(Input type) {
   input::TextInput* input = control->ui()->current_input();
-  
+
   // We should check that this object is the one holding the input.
   if (input == NULL)
     return;

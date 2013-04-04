@@ -5,12 +5,12 @@
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License, or
 // (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -299,4 +299,14 @@ initialize_command_network() {
   CMD2_ANY_STRING  ("network.xmlrpc.dialect.set",    tr1::bind(&apply_xmlrpc_dialect, tr1::placeholders::_2));
   CMD2_ANY         ("network.xmlrpc.size_limit",     tr1::bind(&rpc::XmlRpc::size_limit));
   CMD2_ANY_VALUE_V ("network.xmlrpc.size_limit.set", tr1::bind(&rpc::XmlRpc::set_size_limit, tr1::placeholders::_2));
+
+  CMD2_ANY         ("set_done_fg_color",    tr1::bind(&ui::Root::get_done_fg_color, control->ui()));
+  CMD2_ANY_VALUE_V ("done_fg_color",        tr1::bind(&ui::Root::set_done_fg_color, control->ui(), tr1::placeholders::_2));
+  CMD2_ANY         ("set_done_bg_color",    tr1::bind(&ui::Root::get_done_bg_color, control->ui()));
+  CMD2_ANY_VALUE_V ("done_bg_color",        tr1::bind(&ui::Root::set_done_bg_color, control->ui(), tr1::placeholders::_2));
+  CMD2_ANY         ("set_active_fg_color",  tr1::bind(&ui::Root::get_active_fg_color, control->ui()));
+  CMD2_ANY_VALUE_V ("active_fg_color",      tr1::bind(&ui::Root::set_active_fg_color, control->ui(), tr1::placeholders::_2));
+  CMD2_ANY         ("set_active_bg_color",  tr1::bind(&ui::Root::get_active_bg_color, control->ui()));
+  CMD2_ANY_VALUE_V ("active_bg_color",      tr1::bind(&ui::Root::set_active_bg_color, control->ui(), tr1::placeholders::_2));
+
 }

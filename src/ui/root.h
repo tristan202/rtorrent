@@ -5,12 +5,12 @@
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License, or
 // (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -82,6 +82,14 @@ public:
   // Rename to raw or something, make base function.
   void                set_down_throttle_i64(int64_t throttle) { set_down_throttle(throttle >> 10); }
   void                set_up_throttle_i64(int64_t throttle)   { set_up_throttle(throttle >> 10); }
+  int                 get_done_fg_color();
+  void                set_done_fg_color(int64_t color);
+  int                 get_done_bg_color();
+  void                set_done_bg_color(int64_t color);
+  int                 get_active_fg_color();
+  void                set_active_fg_color(int64_t color);
+  int                 get_active_bg_color();
+  void                set_active_bg_color(int64_t color);
 
   void                adjust_down_throttle(int throttle);
   void                adjust_up_throttle(int throttle);
@@ -92,6 +100,10 @@ public:
   void                disable_input();
 
   input::TextInput*   current_input();
+  int64_t                done_fg_color;
+  int64_t                done_bg_color;
+  int64_t                active_fg_color;
+  int64_t                active_bg_color;
 
 private:
   void                setup_keys();
@@ -105,6 +117,7 @@ private:
   WStatusbar*         m_windowStatusbar;
 
   input::Bindings     m_bindings;
+
 };
 
 }
